@@ -1,0 +1,26 @@
+@if (isOpen) {
+  <div class="brutal-modal-overlay" (click)="onOverlayClick()">
+    <div class="brutal-modal-content" (click)="$event.stopPropagation()">
+      <div class="brutal-modal-header">
+        <h2 class="brutal-modal-title">{{ getTitle() }}</h2>
+      </div>
+      
+      <div class="brutal-modal-body">
+        <p class="brutal-modal-message">{{ getMessage() }}</p>
+      </div>
+      
+      <div class="brutal-modal-footer">
+        <button 
+          class="brutal-modal-button brutal-cancel-button" 
+          (click)="onCancel()">
+          キャンセル
+        </button>
+        <button 
+          class="brutal-modal-button brutal-confirm-button" 
+          (click)="onConfirm()">
+          {{ type === 'add' ? '追加' : '削除' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

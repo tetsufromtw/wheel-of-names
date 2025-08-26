@@ -1,0 +1,26 @@
+@if (isOpen) {
+  <div class="modal-overlay" (click)="onOverlayClick()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ getTitle() }}</h2>
+      </div>
+      
+      <div class="modal-body">
+        <p class="modal-message">{{ getMessage() }}</p>
+      </div>
+      
+      <div class="modal-footer">
+        <button 
+          class="modal-button cancel-button" 
+          (click)="onCancel()">
+          キャンセル
+        </button>
+        <button 
+          class="modal-button confirm-button" 
+          (click)="onConfirm()">
+          {{ type === 'add' ? '追加' : '削除' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

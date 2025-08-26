@@ -1,18 +1,18 @@
-<div class="wheel-container">
-  <div class="wheel-wrapper">
+<div class="brutal-container">
+  <div class="brutal-wrapper">
     <!-- Triangle indicator -->
-    <div class="triangle-indicator"></div>
+    <div class="brutal-indicator"></div>
     
     <!-- Wheel renderer -->
-    <app-wheel-renderer
+    <app-brutal-wheel-renderer
       [sections]="sections()"
       [rotation]="rotation()"
       [highlightIndex]="highlightIndex()">
-    </app-wheel-renderer>
+    </app-brutal-wheel-renderer>
     
     <!-- Center GO button -->
     <button 
-      class="go-button" 
+      class="brutal-go-button" 
       [disabled]="isSpinning()"
       (click)="onGoClick()">
       {{ isSpinning() ? 'スピン中' : 'GO' }}
@@ -20,20 +20,20 @@
   </div>
   
   <!-- Control buttons -->
-  <app-wheel-controls
+  <app-brutal-controls
     [isSpinning]="isSpinning()"
     [sectionCount]="sections().length"
     [minSections]="2"
     (showAddModal)="onShowAddModal()"
     (showRemoveModal)="onShowRemoveModal()">
-  </app-wheel-controls>
+  </app-brutal-controls>
   
   <!-- Modal -->
-  <app-section-modal
+  <app-brutal-modal
     [isOpen]="showModal()"
     [type]="modalType()"
     [currentSectionCount]="sections().length"
     (confirm)="onModalConfirm()"
     (cancel)="onModalCancel()">
-  </app-section-modal>
+  </app-brutal-modal>
 </div>

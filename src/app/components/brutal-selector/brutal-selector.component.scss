@@ -1,0 +1,24 @@
+.brutal-selector-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: '游ゴシック', 'Yu Gothic', sans-serif;
+  background: #FFFF00;
+  padding: 20px;
+}
+
+.brutal-selector-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  border: 8px solid #000000;
+  box-shadow: 16px 16px 0px #000000;
+  padding: 40px;
+  gap: 40px;
+}

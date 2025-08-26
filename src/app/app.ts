@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WheelComponent } from './components/wheel/wheel.component';
+import { BrutalSelectorComponent } from './components/brutal-selector/brutal-selector.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, WheelComponent],
+  imports: [RouterOutlet, BrutalSelectorComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

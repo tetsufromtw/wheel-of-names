@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-wheel-renderer',
-  templateUrl: './wheel-renderer.component.html',
-  styleUrl: './wheel-renderer.component.scss',
+  selector: 'app-brutal-wheel-renderer',
+  templateUrl: './brutal-wheel-renderer.component.html',
+  styleUrl: './brutal-wheel-renderer.component.scss',
   imports: []
 })
-export class WheelRendererComponent {
+export class BrutalWheelRendererComponent {
   @Input() sections: string[] = [];
   @Input() rotation = 0;
   @Input() highlightIndex = -1;
@@ -14,7 +14,7 @@ export class WheelRendererComponent {
   protected getSectionPath(index: number): string {
     const centerX = 200;
     const centerY = 200;
-    const radius = 192;
+    const radius = 190;
     const anglePerSection = (2 * Math.PI) / this.sections.length;
     const startAngle = index * anglePerSection - Math.PI / 2;
     const endAngle = (index + 1) * anglePerSection - Math.PI / 2;
@@ -30,16 +30,7 @@ export class WheelRendererComponent {
   }
 
   protected getSectionColor(index: number): string {
-    const colors = [
-      'linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%)',
-      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', 
-      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-    ];
+    const colors = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#00FFFF', '#FFFF00', '#FF8000', '#8000FF'];
     return colors[index % colors.length];
   }
 

@@ -5,8 +5,9 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  font-family: '游ゴシック', 'Yu Gothic', sans-serif;
-  background: #f0f0f0;
+  font-family: 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  background: var(--primary-bg);
+  padding: 2rem;
 }
 
 .wheel-wrapper {
@@ -14,40 +15,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: var(--border-radius-lg);
+  padding: 3rem;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .triangle-indicator {
   position: absolute;
-  right: -25px;
+  right: -35px;
   top: 50%;
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 20px solid #000;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
+  border-left: 25px solid var(--text-light);
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
   z-index: 10;
+  filter: drop-shadow(var(--shadow-md));
 }
 
 
 .go-button {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: #ff6b6b;
-  border: 6px solid #000;
-  font-family: '游ゴシック', 'Yu Gothic', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
+  background: var(--secondary-bg);
+  border: none;
+  font-family: 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-light);
   cursor: pointer;
   z-index: 15;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  
+  &:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
   
   &:disabled {
-    background: #ccc;
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
     cursor: not-allowed;
     opacity: 0.7;
+    transform: none;
   }
 }
 

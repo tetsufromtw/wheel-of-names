@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-wheel-controls',
-  templateUrl: './wheel-controls.component.html',
-  styleUrl: './wheel-controls.component.scss',
+  selector: 'app-brutal-controls',
+  templateUrl: './brutal-controls.component.html',
+  styleUrl: './brutal-controls.component.scss',
   imports: []
 })
-export class WheelControlsComponent {
+export class BrutalControlsComponent {
   @Input() isSpinning = false;
   @Input() sectionCount = 0;
   @Input() minSections = 2;

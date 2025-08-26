@@ -1,44 +1,46 @@
 import { Component, signal } from '@angular/core';
-import { WheelRendererComponent } from '../wheel-renderer/wheel-renderer.component';
-import { WheelControlsComponent } from '../wheel-controls/wheel-controls.component';
-import { SectionModalComponent, type ModalType } from '../section-modal/section-modal.component';
+import { BrutalSelectorRendererComponent } from '../brutal-selector-renderer/brutal-selector-renderer.component';
+import { BrutalSelectorControlsComponent } from '../brutal-selector-controls/brutal-selector-controls.component';
+import { BrutalModalComponent, type ModalType } from '../brutal-modal/brutal-modal.component';
 
 @Component({
-  selector: 'app-wheel',
-  templateUrl: './wheel.component.html',
-  styleUrl: './wheel.component.scss',
-  imports: [WheelRendererComponent, WheelControlsComponent, SectionModalComponent]
+  selector: 'app-brutal-selector',
+  templateUrl: './brutal-selector.component.html',
+  styleUrl: './brutal-selector.component.scss',
+  imports: [BrutalSelectorRendererComponent, BrutalSelectorControlsComponent, BrutalModalComponent]
 })
-export class WheelComponent {
+export class BrutalSelectorComponent {
   protected sections = signal<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
   protected isSpinning = signal<boolean>(false);
-  protected rotation = signal<number>(0);
-  protected highlightIndex = signal<number>(-1);
+  protected currentIndex = signal<number>(0);
   protected showModal = signal<boolean>(false);
   protected modalType = signal<ModalType>('add');
 
   private readonly MIN_SECTIONS = 2;
   private readonly SPIN_DURATION = 10000;
+  private animationInterval?: number;
 
   protected onGoClick(): void {
     if (this.isSpinning()) return;
     
     this.isSpinning.set(true);
-    this.highlightIndex.set(-1);
+    let elapsedTime = 0;
+    let speed = 50; // 初期速度 (ms)
     
-    const currentRotation = this.rotation();
-    const additionalSpins = Math.random() * 360 + 3600;
-    const finalRotation = currentRotation + additionalSpins;
-    this.rotation.set(finalRotation);
-    
-    setTimeout(() => {
-      const sectionAngle = 360 / this.sections().length;
-      const resultAngle = (360 - (finalRotation % 360)) % 360;
-      const resultIndex = Math.floor(resultAngle / sectionAngle);
+    this.animationInterval = window.setInterval(() => {
+      this.currentIndex.set((this.currentIndex() + 1) % this.sections().length);
+      elapsedTime += speed;
       
-      this.highlightIndex.set(resultIndex);
-      this.isSpinning.set(false);
-    }, this.SPIN_DURATION);
+      // 後半逐漸減速
+      if (elapsedTime > this.SPIN_DURATION / 2) {
+        speed = Math.min(speed + 5, 300);
+      }
+      
+      if (elapsedTime >= this.SPIN_DURATION) {
+        clearInterval(this.animationInterval);
+        this.isSpinning.set(false);
+      }
+    }, speed);
   }
 
   protected onShowAddModal(): void {
@@ -74,11 +76,9 @@ export class WheelComponent {
     const currentSections = this.sections();
     if (currentSections.length > this.MIN_SECTIONS) {
       this.sections.set(currentSections.slice(0, -1));
-      this.highlightIndex.set(-1);
+      if (this.currentIndex() >= currentSections.length - 1) {
+        this.currentIndex.set(0);
+      }
     }
-  }
-
-  private getSectionAngle(): number {
-    return 360 / this.sections().length;
   }
 }

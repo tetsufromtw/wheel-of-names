@@ -1,15 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { WheelRendererComponent } from '../wheel-renderer/wheel-renderer.component';
-import { WheelControlsComponent } from '../wheel-controls/wheel-controls.component';
-import { SectionModalComponent, type ModalType } from '../section-modal/section-modal.component';
+import { BrutalWheelRendererComponent } from '../brutal-wheel-renderer/brutal-wheel-renderer.component';
+import { BrutalControlsComponent } from '../brutal-controls/brutal-controls.component';
+import { BrutalModalComponent, type ModalType } from '../brutal-modal/brutal-modal.component';
 
 @Component({
-  selector: 'app-wheel',
-  templateUrl: './wheel.component.html',
-  styleUrl: './wheel.component.scss',
-  imports: [WheelRendererComponent, WheelControlsComponent, SectionModalComponent]
+  selector: 'app-brutal-wheel',
+  templateUrl: './brutal-wheel.component.html',
+  styleUrl: './brutal-wheel.component.scss',
+  imports: [BrutalWheelRendererComponent, BrutalControlsComponent, BrutalModalComponent]
 })
-export class WheelComponent {
+export class BrutalWheelComponent {
   protected sections = signal<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
   protected isSpinning = signal<boolean>(false);
   protected rotation = signal<number>(0);
@@ -76,9 +76,5 @@ export class WheelComponent {
       this.sections.set(currentSections.slice(0, -1));
       this.highlightIndex.set(-1);
     }
-  }
-
-  private getSectionAngle(): number {
-    return 360 / this.sections().length;
   }
 }

@@ -1,0 +1,29 @@
+<div class="brutal-selector-container">
+  <div class="brutal-selector-wrapper">
+    <!-- Selector renderer -->
+    <app-brutal-selector-renderer
+      [sections]="sections()"
+      [currentIndex]="currentIndex()"
+      [isSpinning]="isSpinning()">
+    </app-brutal-selector-renderer>
+    
+    <!-- Controls with GO button -->
+    <app-brutal-selector-controls
+      [isSpinning]="isSpinning()"
+      [sectionCount]="sections().length"
+      [minSections]="2"
+      (goClick)="onGoClick()"
+      (showAddModal)="onShowAddModal()"
+      (showRemoveModal)="onShowRemoveModal()">
+    </app-brutal-selector-controls>
+  </div>
+  
+  <!-- Modal -->
+  <app-brutal-modal
+    [isOpen]="showModal()"
+    [type]="modalType()"
+    [currentSectionCount]="sections().length"
+    (confirm)="onModalConfirm()"
+    (cancel)="onModalCancel()">
+  </app-brutal-modal>
+</div>

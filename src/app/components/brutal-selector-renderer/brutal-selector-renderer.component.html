@@ -1,0 +1,13 @@
+<div class="brutal-selector-grid">
+  @for (section of sections; track $index) {
+    <div 
+      class="brutal-section-block"
+      [class.brutal-current]="currentIndex === $index"
+      [style.background]="getSectionColor($index)">
+      <span class="brutal-section-text">{{ section }}</span>
+      @if (currentIndex === $index) {
+        <div class="brutal-arrow">➤</div>
+      }
+    </div>
+  }
+</div>

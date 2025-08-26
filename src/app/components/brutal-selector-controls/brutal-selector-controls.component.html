@@ -1,0 +1,25 @@
+<div class="brutal-controls-container">
+  <!-- Remove button -->
+  <button 
+    class="brutal-control-button brutal-remove-button" 
+    [disabled]="isSpinning || sectionCount <= minSections"
+    (click)="onRemoveSection()">
+    -
+  </button>
+
+  <!-- GO button -->
+  <button 
+    class="brutal-go-button" 
+    [disabled]="isSpinning"
+    (click)="onGoClick()">
+    {{ isSpinning ? 'スピン中' : 'GO' }}
+  </button>
+
+  <!-- Add button -->
+  <button 
+    class="brutal-control-button brutal-add-button" 
+    [disabled]="isSpinning"
+    (click)="onAddSection()">
+    +
+  </button>
+</div>
