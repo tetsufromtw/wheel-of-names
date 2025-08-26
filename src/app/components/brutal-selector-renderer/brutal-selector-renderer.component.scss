@@ -43,21 +43,3 @@
   z-index: 2;
 }
 
-.brutal-arrow {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  color: #000000;
-  animation: brutal-bounce 0.5s ease-in-out infinite alternate;
-}
-
-@keyframes brutal-bounce {
-  0% {
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
