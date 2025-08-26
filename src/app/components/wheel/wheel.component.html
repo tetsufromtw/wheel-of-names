@@ -3,28 +3,12 @@
     <!-- Triangle indicator -->
     <div class="triangle-indicator"></div>
     
-    <!-- Main wheel -->
-    <div class="wheel" [style.transform]="'rotate(' + rotation() + 'deg)'">
-      <svg width="400" height="400" class="wheel-svg">
-        @for (section of sections(); track $index) {
-          <g>
-            <path 
-              [attr.d]="getSectionPath($index)"
-              class="section-path"
-              [class.highlight]="highlightIndex() === $index"
-              [style.fill]="getSectionColor($index)">
-            </path>
-            <text 
-              [attr.x]="getSectionTextX($index)"
-              [attr.y]="getSectionTextY($index)"
-              [attr.transform]="getSectionTextTransform($index)"
-              class="section-text">
-              {{ section }}
-            </text>
-          </g>
-        }
-      </svg>
-    </div>
+    <!-- Wheel renderer -->
+    <app-wheel-renderer
+      [sections]="sections()"
+      [rotation]="rotation()"
+      [highlightIndex]="highlightIndex()">
+    </app-wheel-renderer>
     
     <!-- Center GO button -->
     <button 
@@ -36,17 +20,11 @@
   </div>
   
   <!-- Control buttons -->
-  <button 
-    class="control-button add-button" 
-    [disabled]="isSpinning()"
-    (click)="onAddSection()">
-    +
-  </button>
-  
-  <button 
-    class="control-button remove-button" 
-    [disabled]="isSpinning() || sections().length <= 2"
-    (click)="onRemoveSection()">
-    -
-  </button>
+  <app-wheel-controls
+    [isSpinning]="isSpinning()"
+    [sectionCount]="sections().length"
+    [minSections]="2"
+    (addSection)="onAddSection()"
+    (removeSection)="onRemoveSection()">
+  </app-wheel-controls>
 </div>

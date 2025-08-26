@@ -1,0 +1,21 @@
+<div class="wheel" [style.transform]="'rotate(' + rotation + 'deg)'">
+  <svg width="400" height="400" class="wheel-svg">
+    @for (section of sections; track $index) {
+      <g>
+        <path 
+          [attr.d]="getSectionPath($index)"
+          class="section-path"
+          [class.highlight]="highlightIndex === $index"
+          [style.fill]="getSectionColor($index)">
+        </path>
+        <text 
+          [attr.x]="getSectionTextX($index)"
+          [attr.y]="getSectionTextY($index)"
+          [attr.transform]="getSectionTextTransform($index)"
+          class="section-text">
+          {{ section }}
+        </text>
+      </g>
+    }
+  </svg>
+</div>
